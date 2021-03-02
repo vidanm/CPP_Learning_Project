@@ -102,5 +102,3 @@ Listez les classes qui ont besoin de `TexturePool`.
 Sachant que vous n'aurez qu'une seule instance de `TexturePool` dans votre programme, quelle classe devra assumer l'ownership de cet objet ?\
 Instanciez `TexturePool` au bon endroit et refactorisez le code afin que tous les chargements de textures utilisent ce nouvel objet.
 Assurez-vous que votre implémentation ne génère pas des fuites de mémoire au moment de sa destruction.
-
-...
