@@ -91,15 +91,16 @@ Si vous voulez de nouveaux sprites, vous pouvez en trouver sur [cette page](http
 
 ## Objectif 3 - Pool de textures (optionnel)
 
-Au moment, chacun des `AircraftType` contient et charge leurs propres sprites.
-On pourrait néanmoins avoir différents `AircraftType` qui utilisent les mêmes sprites qui serait donc chargés plusieurs fois du disque.
+Pour le moment, chacun des `AircraftType` contient et charge ses propres sprites.
+On pourrait néanmoins avoir différents `AircraftType` qui utilisent les mêmes sprites.
+Ils seraient donc chargés plusieurs fois sur le disque pour rien.
 
-Pour rendre le programme un peu plus performant, on voudrait eviter ces chargement répétés de disque.
-À ce fin, implémentez une classe `TexturePool` qui s'occupe de charger, stocker, et servir les textures.
-Penser bien à l'ownership des textures et des type utilisé pour les servir.
+Pour rendre le programme un peu plus performant, implémentez une classe `TexturePool` qui s'occupe de charger, stocker et fournir les textures.
+Réfléchissez bien au type que vous allez utiliser pour référencer les textures, afin d'exprimer correctement l'ownership.
 
-Rendez-vous compte des classes qui ont besoin de communiquer avec `TexturePool`.
-Selon vous, quelle classe devrait être proprieteur du (seul) instance de `TexturePool` ?
-Etes-vous sur que votre implementation ne laisse pas des fuites de memoire au moment ou cette instance est détruite ?
+Listez les classes qui ont besoin de `TexturePool`.
+Sachant que vous n'aurez qu'une seule instance de `TexturePool` dans votre programme, quelle classe devra assumer l'ownership de cet objet ?\
+Instanciez `TexturePool` au bon endroit et refactorisez le code afin que tous les chargements de textures utilisent ce nouvel objet.
+Assurez-vous que votre implémentation ne génère pas des fuites de mémoire au moment de sa destruction.
 
 ...
