@@ -93,7 +93,7 @@ Si vous voulez de nouveaux sprites, vous pouvez en trouver sur [cette page](http
 
 Pour le moment, chacun des `AircraftType` contient et charge ses propres sprites.
 On pourrait néanmoins avoir différents `AircraftType` qui utilisent les mêmes sprites.
-Ils seraient donc chargés plusieurs fois sur le disque pour rien.
+Ils seraient donc chargés plusieurs fois depuis le disque pour rien.
 
 Pour rendre le programme un peu plus performant, implémentez une classe `TexturePool` qui s'occupe de charger, stocker et fournir les textures.
 Réfléchissez bien au type que vous allez utiliser pour référencer les textures, afin d'exprimer correctement l'ownership.
