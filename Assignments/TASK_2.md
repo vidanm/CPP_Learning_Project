@@ -23,7 +23,8 @@ Rendez-vous compte de quelle classe peut acquérir cet information. Utilisez la 
 
 La classe `Point3D` présente beaucoup d'opportunités d'appliquer des algorithmes.
 Particulairement, des formulations de type `x() = ...; y() = ...; z() = ...;` se remplacent par un seul appel à la bonne fonction de la librairie standard.
-Remplacez le code des fonctions suivantes en utilisant des fonctions de `<algorithm>` / `<numeric>`:
+Remplacez le tableau `Point3D::values` par un `std::array` et puis,
+remplacez le code des fonctions suivantes en utilisant des fonctions de `<algorithm>` / `<numeric>`:
 
 1. `Point3D::operator*=(const float scalar)`
 2. `Point3D::operator+=(const Point3D& other)` et `Point3D::operator-=(const Point3D& other)`
