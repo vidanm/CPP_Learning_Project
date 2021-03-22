@@ -50,9 +50,9 @@ N'hésitez pas à adapter la borne `150` - `3'000`, de manière à ce que des av
 ### B - Un terminal s'il vous plaît
 
 Afin de minimiser les crashs, il va falloir changer la stratégie d'assignation des terminaux aux avions.
-Actuellement, chaque avion demande un nouveau chemin à la tour de contrôle dès qu'il atteint son dernier `Waypoint`.
+Actuellement, chaque avion interroge la tour de contrôle pour réserver un terminal dès qu'il atteint son dernier `Waypoint`.
 Si un terminal est libre, la tour lui donne le chemin pour l'atteindre, sinon, elle lui demande de tourner autour de l'aéroport.
-Pour pouvoir prioriser les avions avec moins d'essence, on aimerait que les avions tentent de réserver un terminal tant qu'ils n'en ont pas (au lieu de ne demander que lorsqu'ils ont terminé leur petit tour).
+Pour pouvoir prioriser les avions avec moins d'essence, il faudrait déjà que les avions tentent de réserver un terminal tant qu'ils n'en n'ont pas (au lieu de ne demander que lorsqu'ils ont terminé leur petit tour).
 
 1. Introduisez une fonction `bool Aircraft::has_terminal() const` qui indique si un terminal a déjà été réservé pour l'avion (vous pouvez utilisé la valeur de `waypoints.back().type`).
 2. Ajoutez une fonction `bool Aircraft::is_circling() const` qui indique si l'avion attend qu'on lui assigne un terminal pour pouvoir attérir.
