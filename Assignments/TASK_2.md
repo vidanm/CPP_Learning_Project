@@ -56,9 +56,9 @@ Pour pouvoir prioretiser les avions avec moins d'essence, on veut qu'ils demande
 A ce fin,
 
 1. introduisez une fonction `bool Aircraft::has_terminal() const` qui indique si l'avion a été assigné un `Terminal` (`waypoints.back().type` peut aider pour faire cette décision).
-2. introduisez une fonction `bool Aircraft::is_circling() const` qui indique si l'avion est en train de circuler (si vous savez pas comment tester ça, on peut dire qu'un avion circule s'il a pas été débarqué et il n'a pas encore un terminal)
+2. introduisez une fonction `bool Aircraft::is_circling() const` qui indique si l'avion est en train de circuler (si vous savez pas comment tester ça, on peut dire qu'un avion circule s'il a pas été débarqué et il n'a pas encore un `Terminal`)
 3. introduisez une fonction `WaypointQueue Tower::reserve_terminal(Aircraft& aircraft)` qui s'occupe de la reservation d'un `Terminal` et retourne un chemin vers ce `Terminal` si possible, et le chemin vide sinon. Vous pouvez re-utiliser le code de reservation trouvé dans `Tower::get_instructions`.
-4. changez la fonction `move()` (ou bien `update()`) de `Aircraft` afin qu'elle appelle `Tower::reserve_terminal` si l'avion est en train de circuler et n'a pas encore été assigné à un `Terminal`.
+4. changez la fonction `move()` (ou bien `update()`) de `Aircraft` afin qu'elle appelle `Tower::reserve_terminal` si l'avion est en train de circuler (et n'a pas encore été assigné à un `Terminal`).
 
 Avec ce changement, il est désormais possible qu'un `Terminal` disponible est donné à l'avion le plus désesperé (qui a le moins d'essence) entre tout les avions circulant.
 Pour ça, il suffit d'appeler leur `move()` (ou `update()`) dans un ordre intelligent:
