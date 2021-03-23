@@ -58,8 +58,8 @@ Pour pouvoir prioriser les avions avec moins d'essence, il faudrait déjà que l
 2. Ajoutez une fonction `bool Aircraft::is_circling() const` qui indique si l'avion attend qu'on lui assigne un terminal pour pouvoir attérir.
 3. Introduisez une fonction `WaypointQueue Tower::reserve_terminal(Aircraft& aircraft)` qui essaye de réserver un `Terminal`. Si c'est possible, alors elle retourne un chemin vers ce `Terminal`, et un chemin vide autrement (vous pouvez vous inspirer / réutiliser le code de `Tower::get_instructions`).
 4. Modifiez la fonction `move()` (ou bien `update()`) de `Aircraft` afin qu'elle appelle `Tower::reserve_terminal` si l'avion est en attente. Si vous ne voyez pas comment faire, vous pouvez essayer d'implémenter ces instructions :\
-\- si l'avion a terminé son service et sa course, alors on le supprime de l'aéroport (comme avant),
-\- si l'avion attend qu'on lui assigne un terminal, on appelle `Tower::reserve_terminal` et on modifie ses `waypoints` si le terminal a effectivement pu être réservé,
+\- si l'avion a terminé son service et sa course, alors on le supprime de l'aéroport (comme avant),\
+\- si l'avion attend qu'on lui assigne un terminal, on appelle `Tower::reserve_terminal` et on modifie ses `waypoints` si le terminal a effectivement pu être réservé,\
 \- si l'avion a terminé sa course actuelle, on appelle `Tower::get_instructions` (comme avant).
 
 ### C - Minimiser les crashs
