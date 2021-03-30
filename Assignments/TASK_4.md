@@ -43,7 +43,7 @@ Que devez-vous changer dans l'appel de la fonction pour que le programme compile
 ### Objectif 2 - Points génériques
 
 1. Reprenez les classes dans `geometry.hpp` et inspirez-vous de `Point2D` et `Point3D` pour définir une unique classe-template `Point` paramétrée par la dimension (nombre de coordonnées) et leur type (entier/float/double).
-Pour le moment, ajoutez simplement un constructeur par défaut à votre classe.
+Pour ce qui est des constructeurs, vous n'ajouterez pour le moment que le constructeur par défaut.
 
 2. Ajoutez une fonction libre `test_generic_points` à votre programme, que vous appelerez depuis le `main`. 
 Placez le code suivant dans cette fonction et modifiez-le plusieurs fois, pour vérifier que le compilateur est capable de générer des classes à partir de votre template sans problème :
