@@ -21,7 +21,7 @@ Then install freeglut using your favorite package manager.
 Install freeglut using a package manager like `brew`.
 
 **Attention**:
-For maxOS > 10.8, you'll need to install and run XQuartz.
+For macOS > 10.8, you'll need to install and run XQuartz.
 
 **Troubleshoot**:
 If you get messages like `<some lib> was built for newer macOS version (XX) than being linked (XX)` try updating/installing `freeglut` with brew!
