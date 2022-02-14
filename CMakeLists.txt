@@ -42,6 +42,8 @@ else()
   target_compile_options(tower PRIVATE -Wall -Wextra -Werror -Wshadow)
 endif()
 
+set(CMAKE_WARN_DEPRECATED OFF CACHE BOOL "" FORCE)
+
 
 ################
 # Dependencies #
