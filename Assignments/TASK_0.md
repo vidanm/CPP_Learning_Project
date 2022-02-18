@@ -9,24 +9,96 @@ Sur quelle touche faut-il appuyer pour ajouter un avion ?
 Comment faire pour quitter le programme ?
 A quoi sert la touche 'F' ?
 
+```
+C pour ajouter un avion
+F pour passer en plein ecran
+Q ou X pour quitter
++ pour zoomer
+- pour dezoomer
+```
+
 Ajoutez un avion à la simulation et attendez.
 Que est le comportement de l'avion ?
+
+```
+L'avion atterit, recupere des passagers puis repart
+```
+
 Quelles informations s'affichent dans la console ?
+
+```
+AF4412 is now landing...
+now servicing AF4412...
+done servicing AF4412
+AF4412 lift off
+```
+
 
 Ajoutez maintenant quatre avions d'un coup dans la simulation.
 Que fait chacun des avions ?
+
+```
+Il attends que la piste d'atterissage soit libre avant d'atterir
+```
 
 ## B- Analyse du code
 
 Listez les classes du programme à la racine du dossier src/.
 Pour chacune d'entre elle, expliquez ce qu'elle représente et son rôle dans le programme.
 
+```
+Airport : s'occupe de reserver des terminaux aux avions et de renvoyer une liste de point de passage
+pour l'atterrissage. 
+
+Aircraft : represente les avions.
+
+Terminal : represente le terminal.
+
+Tower : permets de faire l'association entre les avions et l'airport.
+
+Waypoint : Point de passage a suivre par les avions.
+```
+
+
 Pour les classes `Tower`, `Aircaft`, `Airport` et `Terminal`, listez leurs fonctions-membre publiques et expliquez précisément à quoi elles servent.
 Réalisez ensuite un schéma présentant comment ces différentes classes intéragissent ensemble.
+
+```
+Terminal
+-	in_use() : permets de savoir si un terminal est deja utilise ou non.
+- in_servicing() : permets de savoir si un avion est en service sur ce terminal ou non.
+- assign_craft() : assigne un avion au terminal
+- finish_service() : desassigne l'avion courant du terminal
+
+Tower
+- get_instructions() : recupere des instructions a donner pour guider les avions en vol
+- arrived_at_terminal() : associe un avion a un terminal
+
+Aircraft
+- get_flight_num() : recupere l'identifiant du vol
+- distance_to() : calcule la distance vers un point 3D
+- display() : affiche l'avion
+- move() : deplace l'avion
+
+Airport
+- get_tower() : recupere la tour de controle associee a l'airport
+- display() : affiche l'avion
+- move() : deplace l'avion
+```
+
+![UML](https://i.ibb.co/k6Cp3MD/1645203937.png)
 
 Quelles classes et fonctions sont impliquées dans la génération du chemin d'un avion ?
 Quel conteneur de la librairie standard a été choisi pour représenter le chemin ?
 Expliquez les intérêts de ce choix.
+
+```
+Les classes impliquees dans la generation du chemin d'un avion sont les classes tower et waypoint.
+Tower va definir les instructions pour chaque avion en creant un ensemble de waypoint.
+Waypoint herite de Point3D qui permets de representer un point dans l'espace.
+Les waypoint vont definir des point de passages pour les itineraires des avions.
+C'est la fonction get_instructions de la classe Tower qui va creer les chemins a suivre par les avions.
+```
 
 ## C- Bidouillons !
 
