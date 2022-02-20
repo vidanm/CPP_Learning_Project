@@ -44,8 +44,10 @@ Choisissez un type qui met bien en avant le fait que `AircraftManager` est propr
 
 Ajoutez un nouvel attribut `aircraft_manager` dans la classe `TowerSimulation`.
 
-Modifiez ensuite le code afin que `timer` passe forcément par le gestionnaire d'avions pour déplacer les avions.
-Faites le nécessaire pour que le gestionnaire supprime les avions après qu'ils aient décollé.
+Faites ce qu'il faut pour que le `AircraftManager` puisse appartenir à la liste `move_queue`.
+Ajoutez la fonction appropriée dans `AircraftManager` pour demander de bouger (`move`) les avions.
+Supprimez les ajouts d'`Aircraft` dans la `move_queue`. En effet, ce n'est plus `timer` qui est responsable de déplacer les avions mais l'`AircraftManager`.
+Faites le nécessaire pour que le gestionnaire supprime les avions après qu'ils soient partis de l'aéroport.
 
 Enfin, faites ce qu'il faut pour que `create_aircraft` donne l'avion qu'elle crée au gestionnaire.
 Testez que le programme fonctionne toujours.
@@ -97,6 +99,9 @@ Ils seraient donc chargés plusieurs fois depuis le disque pour rien.
 
 Pour rendre le programme un peu plus performant, implémentez une classe `TexturePool` qui s'occupe de charger, stocker et fournir les textures.
 Pour exprimer correctement ce type d'ownership, vous devez utiliser le smart-pointer `std::shared_ptr`.
+
+Commencez par aller sur la documentation de `std::shared_ptr`.
+Pouvez-vous expliquer comment le compilateur arrive à déterminer à quel moment l'objet n'a plus aucun owner ?
 
 Listez les classes qui ont besoin de `TexturePool`.
 Sachant que vous n'aurez qu'une seule instance de `TexturePool` dans votre programme, quelle classe devra assumer l'ownership de cet objet ?\
