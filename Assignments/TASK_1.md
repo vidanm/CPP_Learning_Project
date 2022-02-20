@@ -112,7 +112,7 @@ Pour rendre le programme un peu plus performant, implémentez une classe `Textur
 Pour exprimer correctement ce type d'ownership, vous devez utiliser le smart-pointer `std::shared_ptr`.
 
 Commencez par aller sur la documentation de `std::shared_ptr`.
-Pouvez-vous expliquer comment le compilateur arrive à déterminer à quel moment l'objet n'a plus aucun owner ?
+Pouvez-vous expliquer comment le compilateur arrive à déterminer à quel moment l'objet n'a plus aucun owner, afin de le détruire ?
 
 Listez les classes qui ont besoin de `TexturePool`.
 Sachant que vous n'aurez qu'une seule instance de `TexturePool` dans votre programme, quelle classe devra assumer l'ownership de cet objet ?\
