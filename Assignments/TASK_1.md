@@ -66,7 +66,18 @@ La création des avions est faite à partir des composants suivants :
 
 Pour éviter l'usage de variables globales, vous allez créer une classe `AircraftFactory` dont le rôle est de créer des avions.
 
-Définissez cette classe, instanciez-la à l'endroit qui vous paraît le plus approprié, et refactorisez le code pour l'utiliser.
+Définissez cette classe, instanciez-là en tant que membre de `TowerSimulation` et refactorisez-le code pour l'utiliser.
+Vous devriez constater que le programme crashe.
+
+En effet, pour que la factory fonctionne, il faut que le `MediaPath` (avec la fonction `MediaPath::initialize`) et que `glut` (avec la fonction `init_gl()`) aient été initialisés.
+Comme ces appels sont faits depuis le corps du constructeur de `TowerSimulation`, ils sont actuellement exécutés après la construction de la factory.
+Afin de faire en sorte que les appels aient lieu dans le bon ordre, vous allez créer une structure `ContextInitializer` dans le fichier `tower_sim.hpp`.
+Vous lui ajouterez un constructeur dont le rôle sera d'appeler les fonctions d'initialisation de `MediaPath`, `glut` et `srand`.
+
+Vous pouvez maintenant ajoutez un attribut `context_initializer` de type `ContextInitializer` dans la classe `TowerSimulation`.
+A quelle ligne faut-il définir `context_initializer` dans `TowerSimulation` pour s'assurer que le constructeur de `context_initializer` est appelé avant celui de `factory` ?
+
+Refactorisez le restant du code pour utiliser votre factory.
 Vous devriez du coup pouvoir supprimer les variables globales `airlines` et `aircraft_types`.
 
 ### B - Conflits
