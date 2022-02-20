@@ -96,7 +96,7 @@ On pourrait néanmoins avoir différents `AircraftType` qui utilisent les mêmes
 Ils seraient donc chargés plusieurs fois depuis le disque pour rien.
 
 Pour rendre le programme un peu plus performant, implémentez une classe `TexturePool` qui s'occupe de charger, stocker et fournir les textures.
-Réfléchissez bien au type que vous allez utiliser pour référencer les textures, afin d'exprimer correctement l'ownership.
+Pour exprimer correctement ce type d'ownership, vous devez utiliser le smart-pointer `std::shared_ptr`.
 
 Listez les classes qui ont besoin de `TexturePool`.
 Sachant que vous n'aurez qu'une seule instance de `TexturePool` dans votre programme, quelle classe devra assumer l'ownership de cet objet ?\
