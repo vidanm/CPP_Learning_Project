@@ -90,9 +90,15 @@ Airport
 
 Quelles classes et fonctions sont impliquées dans la génération du chemin d'un avion ?
 Quel conteneur de la librairie standard a été choisi pour représenter le chemin ?
+```
+Une queue 
+```
+
 Expliquez les intérêts de ce choix.
 
 ```
+La classe Queue permets de mettre des priorites sur les objets ( premier arrive premier servis )
+
 Les classes impliquees dans la generation du chemin d'un avion sont les classes tower et waypoint.
 Tower va definir les instructions pour chaque avion en creant un ensemble de waypoint.
 Waypoint herite de Point3D qui permets de representer un point dans l'espace.
@@ -106,12 +112,25 @@ C'est la fonction get_instructions de la classe Tower qui va creer les chemins a
 Le Concorde est censé pouvoir voler plus vite que les autres avions.
 Modifiez le programme pour tenir compte de cela.
 
+```
+Dans le fichier aircraft_types.hpp
+C'est la classe AircraftType
+```
+
 2) Identifiez quelle variable contrôle le framerate de la simulation.
 Ajoutez deux nouveaux inputs au programme permettant d'augmenter ou de diminuer cette valeur.
 Essayez maintenant de mettre en pause le programme en manipulant ce framerate. Que se passe-t-il ?\
 Ajoutez une nouvelle fonctionnalité au programme pour mettre le programme en pause, et qui ne passe pas par le framerate.
 
+```
+La variable de controle est GL::ticks_per_sec
+```
+
 3) Identifiez quelle variable contrôle le temps de débarquement des avions et doublez-le.
+
+```
+#TODO
+```
 
 4) Lorsqu'un avion a décollé, il réattérit peu de temps après.
 Faites en sorte qu'à la place, il soit retiré du programme.\

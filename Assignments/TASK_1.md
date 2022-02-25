@@ -7,6 +7,8 @@ Chaque avion créé est ensuite placé dans les files `GL::display_queue` et `GL
 
 Si à un moment quelconque du programme, vous souhaitiez accéder à l'avion ayant le numéro de vol "AF1250", que devriez-vous faire ?
 
+`Il faut parcourir toute la liste en comparant pour chaque avion si c'est bien l'avion qu'on recherche ou non `
+
 ---
 
 ## Objectif 1 - Référencement des avions
