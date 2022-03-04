@@ -2,6 +2,7 @@
 
 #include "GL/opengl_interface.hpp"
 #include "aircraft.hpp"
+#include "aircraft_manager.hpp"
 #include "airport.hpp"
 #include "config.hpp"
 #include "img/image.hpp"
@@ -40,8 +41,9 @@ void TowerSimulation::create_aircraft(const AircraftType& type) const
     const Point3D direction = (-start).normalize();
 
     Aircraft* aircraft = new Aircraft { type, flight_number, start, direction, airport->get_tower() };
-    //GL::display_queue.emplace_back(aircraft);
-    GL::move_queue.emplace(aircraft);
+    aircraftManager->add_aircraft(aircraft);
+    // GL::display_queue.emplace_back(aircraft);
+    // GL::move_queue.emplace(aircraft);
 }
 
 void TowerSimulation::create_random_aircraft() const
@@ -57,8 +59,8 @@ void TowerSimulation::create_keystrokes() const
     GL::keystrokes.emplace('+', []() { GL::change_zoom(0.95f); });
     GL::keystrokes.emplace('-', []() { GL::change_zoom(1.05f); });
     GL::keystrokes.emplace('f', []() { GL::toggle_fullscreen(); });
-		GL::keystrokes.emplace('p', []() { GL::ticks_per_sec++;});
-		GL::keystrokes.emplace('o', []() { GL::ticks_per_sec--;});
+    GL::keystrokes.emplace('p', []() { GL::ticks_per_sec++; });
+    GL::keystrokes.emplace('o', []() { GL::ticks_per_sec--; });
 }
 
 void TowerSimulation::display_help() const
@@ -81,6 +83,11 @@ void TowerSimulation::init_airport()
 
     GL::display_queue.emplace_back(airport);
     GL::move_queue.emplace(airport);
+}
+
+void TowerSimulation::init_aircraftManager()
+{
+    aircraftManager = new AircraftManager();
 }
 
 void TowerSimulation::launch()

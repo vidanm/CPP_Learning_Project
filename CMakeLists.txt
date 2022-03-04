@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.0.0)
 
 project(tower_sim VERSION 0.1.0)
 set(CMAKE_VERBOSE_MAKEFILE ON)
+set(CMAKE_CXX_STANDARD 17)
 
 add_executable(tower
 	src/GL/displayable.hpp
@@ -16,6 +17,8 @@ add_executable(tower
     src/aircraft_types.hpp
     src/aircraft.cpp
     src/aircraft.hpp
+	src/aircraft_manager.cpp
+	src/aircraft_manager.hpp
     src/airport_type.hpp
 	src/airport.hpp
 	src/config.hpp
