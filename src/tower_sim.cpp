@@ -42,6 +42,7 @@ void TowerSimulation::create_aircraft(const AircraftType& type) const
 
     Aircraft* aircraft = new Aircraft { type, flight_number, start, direction, airport->get_tower() };
     aircraftManager->add_aircraft(aircraft);
+
     // GL::display_queue.emplace_back(aircraft);
     // GL::move_queue.emplace(aircraft);
 }
@@ -99,6 +100,7 @@ void TowerSimulation::launch()
     }
 
     init_airport();
+    init_aircraftManager();
     init_aircraft_types();
 
     GL::loop();

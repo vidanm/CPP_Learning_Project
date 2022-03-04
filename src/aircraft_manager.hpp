@@ -1,10 +1,12 @@
+#include "GL/dynamic_object.hpp"
 #include "aircraft.hpp"
 
-class AircraftManager
+class AircraftManager : GL::DynamicObject
 {
 public:
     AircraftManager() {}
     void add_aircraft(Aircraft* aircraft);
+    void move();
 
 private:
     using AircraftPool        = std::unordered_set<Aircraft*>;
