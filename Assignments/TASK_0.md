@@ -138,7 +138,19 @@ Indices :\
 A quel endroit pouvez-vous savoir que l'avion doit être supprimé ?\
 Pourquoi n'est-il pas sûr de procéder au retrait de l'avion dans cette fonction ?
 A quel endroit de la callstack pourriez-vous le faire à la place ?\
+
+```
+Une fois que l'avion a deja atteri une fois et qu'il n'a plus d'objectif.
+On pourrais supprimer l'avion dans la fonction get_instructions definie dans tower.cpp,
+Mais ce n'est pas pertinent car la fonction move() qui appelle get_instructions() est appelle sur un iterateur d'unordered set
+si on supprime un aircraft a cet endroit la il risque d'y avoir un probleme.
+Il faut retirer les avions apres les avoir move()
+TODO : Supprimer apres le move dans la fonction gl
+```
+
 Que devez-vous modifier pour transmettre l'information de la première à la seconde fonction ?
+```On transmets un booleen par la fonction move() pour savoir si l'objet doit etre supprime apres ou non```
+
 
 5) Lorsqu'un objet de type `Displayable` est créé, il faut ajouter celui-ci manuellement dans la liste des objets à afficher.
 Il faut également penser à le supprimer de cette liste avant de le détruire.

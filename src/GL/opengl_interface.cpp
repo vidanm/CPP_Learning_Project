@@ -77,6 +77,7 @@ void timer(const int step)
     {
         item->move();
     }
+
     glutPostRedisplay();
     glutTimerFunc(1000u / ticks_per_sec, timer, step + 1);
 }
