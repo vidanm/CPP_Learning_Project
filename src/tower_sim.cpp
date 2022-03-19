@@ -82,13 +82,14 @@ void TowerSimulation::init_airport()
     airport = new Airport { one_lane_airport, Point3D { 0, 0, 0 },
                             new img::Image { one_lane_airport_sprite_path.get_full_path() } };
 
-    GL::display_queue.emplace_back(airport);
+    // GL::display_queue.emplace_back(airport);
     GL::move_queue.emplace(airport);
 }
 
 void TowerSimulation::init_aircraftManager()
 {
     aircraftManager = new AircraftManager();
+    GL::move_queue.emplace(aircraftManager);
 }
 
 void TowerSimulation::launch()

@@ -35,10 +35,12 @@ Répondez aux questions suivantes :
 ```C'est dans la methode timer de opengl_interfaces que l'on va supprimer les avions de la move_queue```
 
 2. Quelles autres structures contiennent une référence sur un avion au moment où il doit être détruit ?
-``` display_queue possede aussi une reference de l'avion au moment ou il doit etre detruit```
+
+```display_queue possede aussi une reference de l'avion au moment ou il doit etre detruit```
 
 3. Comment fait-on pour supprimer la référence sur un avion qui va être détruit dans ces structures ?
-``` On peut utiliser le destructeur de Displayable definit precedemment qui va supprimer l'element dans la liste```
+
+```On peut utiliser le destructeur de Displayable definit precedemment qui va supprimer l'element dans la liste```
 
 4. Pourquoi n'est-il pas très judicieux d'essayer d'appliquer la même chose pour votre `AircraftManager` ?
 ``` Parce que c'est justement le role de l'aircraft manager de supprimer les avions, ils ne devront pas pouvoir se gerer par eux meme```
