@@ -22,6 +22,7 @@ struct AircraftType
     {}
 };
 
+/*
 constexpr size_t NUM_AIRCRAFT_TYPES = 3;
 inline AircraftType* aircraft_types[NUM_AIRCRAFT_TYPES] {};
 
@@ -33,3 +34,4 @@ inline void init_aircraft_types()
     aircraft_types[1] = new AircraftType { .02f, .05f, .02f, MediaPath { "b707_jat.png" } };
     aircraft_types[2] = new AircraftType { .02f, .1f, .05f, MediaPath { "concorde_af.png" } };
 }
+*/

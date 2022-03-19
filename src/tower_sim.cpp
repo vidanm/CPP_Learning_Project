@@ -2,6 +2,7 @@
 
 #include "GL/opengl_interface.hpp"
 #include "aircraft.hpp"
+#include "aircraft_factory.hpp"
 #include "aircraft_manager.hpp"
 #include "airport.hpp"
 #include "config.hpp"
@@ -31,7 +32,7 @@ TowerSimulation::~TowerSimulation()
     delete airport;
 }
 
-void TowerSimulation::create_aircraft(const AircraftType& type) const
+/*void TowerSimulation::create_aircraft(const AircraftType& type) const
 {
     assert(airport); // make sure the airport is initialized before creating aircraft
 
@@ -42,21 +43,18 @@ void TowerSimulation::create_aircraft(const AircraftType& type) const
 
     Aircraft* aircraft = new Aircraft { type, flight_number, start, direction, airport->get_tower() };
     aircraftManager->add_aircraft(aircraft);
-
-    // GL::display_queue.emplace_back(aircraft);
-    // GL::move_queue.emplace(aircraft);
 }
-
 void TowerSimulation::create_random_aircraft() const
-{
-    create_aircraft(*(aircraft_types[rand() % 3]));
-}
+    {
+        create_aircraft(*(aircraft_types[rand() % 3]));
+    }*/
 
 void TowerSimulation::create_keystrokes() const
 {
     GL::keystrokes.emplace('x', []() { GL::exit_loop(); });
     GL::keystrokes.emplace('q', []() { GL::exit_loop(); });
-    GL::keystrokes.emplace('c', [this]() { create_random_aircraft(); });
+    GL::keystrokes.emplace(
+        'c', [this]() { aircraftManager->add_aircraft(aircraftFactory->create_random_aircraft(*airport)); });
     GL::keystrokes.emplace('+', []() { GL::change_zoom(0.95f); });
     GL::keystrokes.emplace('-', []() { GL::change_zoom(1.05f); });
     GL::keystrokes.emplace('f', []() { GL::toggle_fullscreen(); });
@@ -92,6 +90,11 @@ void TowerSimulation::init_aircraftManager()
     GL::move_queue.emplace(aircraftManager);
 }
 
+void TowerSimulation::init_aircraftFactory()
+{
+    aircraftFactory = new AircraftFactory();
+}
+
 void TowerSimulation::launch()
 {
     if (help)
@@ -101,8 +104,8 @@ void TowerSimulation::launch()
     }
 
     init_airport();
+    init_aircraftFactory();
     init_aircraftManager();
-    init_aircraft_types();
 
     GL::loop();
 }
