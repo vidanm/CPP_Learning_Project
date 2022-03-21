@@ -5,7 +5,7 @@
 ### A - Structured Bindings
 
 `TowerSimulation::display_help()` est chargé de l'affichage des touches disponibles.
-Dans sa boucle, remplacez `const auto& ks_pair` par un structured binding adapté.
+Dans sa boucle, remplacez `const auto& ks_pair` par un structured binding adapté.z1
 
 ### B - Algorithmes divers
 
