@@ -135,6 +135,12 @@ bool Aircraft::move()
             {
                 pos.z() -= SINK_FACTOR * (SPEED_THRESHOLD - speed_len);
             }
+
+            fuel--;
+            if (fuel <= 0)
+            {
+                std::cout << this->flight_number << " has nos FUEL" << std::endl;
+            }
         }
 
         // update the z-value of the displayable structure
