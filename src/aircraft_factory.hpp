@@ -12,6 +12,8 @@ public:
     AircraftFactory() {}
     Aircraft* create_aircraft(Airport& airport, const AircraftType& type);
     Aircraft* create_random_aircraft(Airport& airport);
+    void aircraft_number_by_airlines(const unsigned int airline) const;
+    unsigned int airlines_number();
 
 private:
     AircraftType* aircraft_types[3] {
@@ -21,5 +23,5 @@ private:
     };
 
     std::unordered_set<std::string> used_number = {};
-    std::string airlines[8]                     = { "AF", "LH", "EY", "DL", "KL", "BA", "AY", "EY" };
+    const std::vector<std::string> airlines     = { "AF", "LH", "EY", "DL", "KL", "BA", "AY", "EY" };
 };

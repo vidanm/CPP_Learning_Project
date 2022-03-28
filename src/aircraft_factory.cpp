@@ -27,3 +27,22 @@ Aircraft* AircraftFactory::create_random_aircraft(Airport& airport)
 {
     return create_aircraft(airport, *(aircraft_types[rand() % 3]));
 }
+
+void AircraftFactory::aircraft_number_by_airlines(const unsigned int airline) const
+{
+    if (airline >= airlines.size())
+    {
+        return;
+    }
+
+    std::cout << airlines.at(airline) << " : "
+              << std::count_if(used_number.begin(), used_number.end(),
+                               [this, airline](std::string flight)
+                               { return airlines.at(airline).compare(0, 2, flight, 0, 2) == 0; })
+              << std::endl;
+}
+
+unsigned int AircraftFactory::airlines_number()
+{
+    return airlines.size();
+}

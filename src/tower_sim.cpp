@@ -24,6 +24,9 @@ TowerSimulation::TowerSimulation(int argc, char** argv) :
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
     GL::init_gl(argc, argv, "Airport Tower Simulation");
 
+    init_airport();
+    init_aircraftFactory();
+    init_aircraftManager();
     create_keystrokes();
 }
 
@@ -51,6 +54,8 @@ void TowerSimulation::create_random_aircraft() const
 
 void TowerSimulation::create_keystrokes() const
 {
+    auto airlines_count = aircraftFactory->airlines_number();
+
     GL::keystrokes.emplace('x', []() { GL::exit_loop(); });
     GL::keystrokes.emplace('q', []() { GL::exit_loop(); });
     GL::keystrokes.emplace(
@@ -60,6 +65,10 @@ void TowerSimulation::create_keystrokes() const
     GL::keystrokes.emplace('f', []() { GL::toggle_fullscreen(); });
     GL::keystrokes.emplace('p', []() { GL::ticks_per_sec++; });
     GL::keystrokes.emplace('o', []() { GL::ticks_per_sec--; });
+    for (unsigned int i = 0; i < airlines_count; i++)
+    {
+        GL::keystrokes.emplace(i + '0', [this, i]() { aircraftFactory->aircraft_number_by_airlines(i); });
+    }
 }
 
 void TowerSimulation::display_help() const
@@ -102,10 +111,6 @@ void TowerSimulation::launch()
         display_help();
         return;
     }
-
-    init_airport();
-    init_aircraftFactory();
-    init_aircraftManager();
 
     GL::loop();
 }
