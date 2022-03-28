@@ -9,6 +9,7 @@ public:
     void move() override;
 
 private:
-    using AircraftPool        = std::unordered_set<Aircraft*>;
+    using AircraftPool        = std::vector<Aircraft*>;
     AircraftPool aircraftPool = {};
+    bool toDelete;
 };

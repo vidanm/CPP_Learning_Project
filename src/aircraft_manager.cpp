@@ -4,7 +4,12 @@
 
 void AircraftManager::add_aircraft(Aircraft* aircraft)
 {
-    this->aircraftPool.emplace(aircraft);
+    this->aircraftPool.emplace_back(aircraft);
+}
+
+bool toDelete(Aircraft aircraft)
+{
+    return !aircraft.move();
 }
 
 void AircraftManager::move()
@@ -17,9 +22,8 @@ void AircraftManager::move()
             aircraftToRemove.emplace(aircraft);
     }
 
-    for (auto& aircraft : aircraftToRemove)
-    {
-        aircraftPool.erase(aircraft);
-        delete aircraft;
-    }
+    auto newEnd = std::remove_if(aircraftPool.begin(), aircraftPool.end(),
+                                 [](Aircraft* aircraft) { return !(aircraft->move()); });
+
+    aircraftPool.erase(newEnd, aircraftPool.end());
 }
