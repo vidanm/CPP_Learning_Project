@@ -2,6 +2,7 @@
 
 #include "airport.hpp"
 #include "terminal.hpp"
+#include "waypoint.hpp"
 
 #include <cassert>
 
@@ -64,4 +65,16 @@ void Tower::arrived_at_terminal(const Aircraft& aircraft)
     const auto it = find_craft_and_terminal(aircraft);
     assert(it != reserved_terminals.end());
     airport.get_terminal(it->second).start_service(aircraft);
+}
+
+WaypointQueue Tower::reserve_terminal(Aircraft& aircraft)
+{
+    // assert(&aircraft);
+    //  try and reserve a terminal for the craft to land
+    const auto vp = airport.reserve_terminal(aircraft);
+    if (!vp.first.empty())
+    {
+        reserved_terminals.emplace_back(&aircraft, vp.second);
+    }
+    return vp.first;
 }

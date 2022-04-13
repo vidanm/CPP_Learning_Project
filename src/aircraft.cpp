@@ -1,6 +1,7 @@
 #include "aircraft.hpp"
 
 #include "GL/opengl_interface.hpp"
+#include "waypoint.hpp"
 
 #include <cmath>
 
@@ -141,6 +142,15 @@ bool Aircraft::move()
             {
                 std::cout << this->flight_number << " has nos FUEL" << std::endl;
             }
+
+            if (is_circling())
+            {
+                auto terminalPath = control.reserve_terminal(*this);
+                if (!terminalPath.empty())
+                {
+                    waypoints.swap(terminalPath);
+                }
+            }
         }
 
         // update the z-value of the displayable structure
@@ -152,4 +162,14 @@ bool Aircraft::move()
 void Aircraft::display() const
 {
     type.texture.draw(project_2D(pos), { PLANE_TEXTURE_DIM, PLANE_TEXTURE_DIM }, get_speed_octant());
+}
+
+bool Aircraft::has_terminal() const
+{
+    return !waypoints.empty() && waypoints.back().type == wp_terminal;
+}
+
+bool Aircraft::is_circling() const
+{
+    return !finished && !has_terminal();
 }
