@@ -47,11 +47,15 @@ WaypointQueue Tower::get_instructions(Aircraft& aircraft)
         Terminal& terminal      = airport.get_terminal(terminal_num);
         if (!terminal.is_servicing())
         {
-            terminal.finish_service();
-            reserved_terminals.erase(it);
-            aircraft.is_at_terminal = false;
-            aircraft.finished       = true;
-            return airport.start_path(terminal_num);
+            if (!aircraft.is_low_on_fuel())
+            {
+                terminal.finish_service();
+                reserved_terminals.erase(it);
+                aircraft.is_at_terminal = false;
+                aircraft.finished       = true;
+                return airport.start_path(terminal_num);
+            }
+            return {};
         }
         else
         {

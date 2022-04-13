@@ -178,3 +178,8 @@ unsigned int Aircraft::remaining_fuel() const
 {
     return this->fuel;
 }
+
+bool Aircraft::is_low_on_fuel() const
+{
+    return this->fuel < 1000;
+}

@@ -19,7 +19,6 @@ private:
     WaypointQueue waypoints = {};
     Tower& control;
     bool landing_gear_deployed = false; // is the landing gear deployed?
-    bool is_at_terminal        = false;
     bool finished              = false;
     unsigned int fuel          = (std::rand() + 150) % 3000;
 
@@ -59,6 +58,7 @@ public:
         speed.cap_length(max_speed());
     }
 
+    bool is_at_terminal = false;
     const std::string& get_flight_num() const { return flight_number; }
     float distance_to(const Point3D& p) const { return pos.distance_to(p); }
 
@@ -66,6 +66,7 @@ public:
     bool move();
     bool has_terminal() const;
     bool is_circling() const;
+    bool is_low_on_fuel() const;
     unsigned int remaining_fuel() const;
 
     friend class Tower;
