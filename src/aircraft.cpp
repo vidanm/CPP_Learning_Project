@@ -173,3 +173,8 @@ bool Aircraft::is_circling() const
 {
     return !finished && !has_terminal();
 }
+
+unsigned int Aircraft::remaining_fuel() const
+{
+    return this->fuel;
+}

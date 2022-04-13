@@ -66,6 +66,7 @@ public:
     bool move();
     bool has_terminal() const;
     bool is_circling() const;
+    unsigned int remaining_fuel() const;
 
     friend class Tower;
 };
