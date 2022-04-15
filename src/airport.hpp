@@ -3,13 +3,15 @@
 #include "GL/displayable.hpp"
 #include "GL/dynamic_object.hpp"
 #include "GL/texture.hpp"
+#include "aircraft_manager.hpp"
 #include "airport_type.hpp"
 #include "geometry.hpp"
 #include "img/image.hpp"
+#include "math.h"
 #include "runway.hpp"
 #include "terminal.hpp"
-#include "tower.hpp"
 
+#include <algorithm>
 #include <vector>
 
 class Airport : public GL::Displayable, public GL::DynamicObject
@@ -19,7 +21,12 @@ private:
     const Point3D pos;
     const GL::Texture2D texture;
     std::vector<Terminal> terminals;
+    unsigned int fuel_stock       = 0;
+    unsigned int ordered_fuel     = 0;
+    unsigned int next_refill_time = 0;
     Tower tower;
+
+    AircraftManager* aircraft_manager = nullptr;
 
     // reserve a terminal
     // if a terminal is free, return
@@ -66,11 +73,32 @@ public:
 
     void move() override
     {
+
+        if (next_refill_time == 0)
+        {
+            auto previous_stock = fuel_stock;
+            this->fuel_stock += this->ordered_fuel;
+            unsigned int max_value = 5000;
+            this->ordered_fuel     = std::min(aircraft_manager->get_required_fuel(), max_value);
+            next_refill_time       = 100;
+
+            std::cout << "REFILLED AIRPORT | Stock precedent : " << previous_stock
+                      << " | Stock courant : " << this->fuel_stock
+                      << " | Quantite recue : " << this->ordered_fuel << std::endl;
+        }
+        else
+        {
+            next_refill_time--;
+        }
+
         for (auto& t : terminals)
         {
             t.move();
+            t.refill_aircraft_if_needed(this->fuel_stock);
         }
     }
+
+    void set_aircraft_manager(AircraftManager* manager) { aircraft_manager = manager; }
 
     friend class Tower;
 };

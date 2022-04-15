@@ -1,3 +1,5 @@
+#pragma once
+
 #include "GL/dynamic_object.hpp"
 #include "aircraft.hpp"
 
@@ -7,7 +9,7 @@ public:
     AircraftManager() {}
     void add_aircraft(Aircraft* aircraft);
     void move() override;
-    void get_required_fuel();
+    unsigned int get_required_fuel();
 
 private:
     using AircraftPool        = std::vector<Aircraft*>;

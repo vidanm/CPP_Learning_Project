@@ -24,9 +24,9 @@ TowerSimulation::TowerSimulation(int argc, char** argv) :
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
     GL::init_gl(argc, argv, "Airport Tower Simulation");
 
+    init_aircraftManager();
     init_airport();
     init_aircraftFactory();
-    init_aircraftManager();
     create_keystrokes();
 }
 
@@ -91,6 +91,7 @@ void TowerSimulation::init_airport()
 
     // GL::display_queue.emplace_back(airport);
     GL::move_queue.emplace(airport);
+    airport->set_aircraft_manager(aircraftManager);
 }
 
 void TowerSimulation::init_aircraftManager()

@@ -43,11 +43,15 @@ void AircraftManager::move()
 
     aircraftPool.erase(newEnd, aircraftPool.end());
 }
-unsigned int get_required_fuel(Aircraft& aircraft)
+unsigned int AircraftManager::get_required_fuel()
 {
-    if (aircraft.is_at_terminal && aircraft.is_low_on_fuel())
+    unsigned int sum = 0;
+    for (auto& aircraft : aircraftPool)
     {
-        return 3000 - aircraft.remaining_fuel();
+        if (aircraft->is_low_on_fuel())
+        {
+            sum += 3000 - aircraft->remaining_fuel();
+        }
     }
-    return 0;
+    return sum;
 }

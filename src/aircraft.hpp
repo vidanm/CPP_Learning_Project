@@ -68,6 +68,7 @@ public:
     bool is_circling() const;
     bool is_low_on_fuel() const;
     unsigned int remaining_fuel() const;
+    void refill(unsigned int& fuel_stock);
 
     friend class Tower;
 };
