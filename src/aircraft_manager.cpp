@@ -32,14 +32,19 @@ void AircraftManager::move()
                       return first->remaining_fuel() < second->remaining_fuel();
               });
 
-    for (auto& aircraft : aircraftPool)
-    {
-        if (!aircraft->move())
-            aircraftToRemove.emplace(aircraft);
-    }
-
     auto newEnd = std::remove_if(aircraftPool.begin(), aircraftPool.end(),
-                                 [](Aircraft* aircraft) { return !(aircraft->move()); });
+                                 [this](Aircraft* aircraft)
+                                 {
+                                     try
+                                     {
+                                         return !(aircraft->move());
+                                     } catch (const AircraftCrash& crash)
+                                     {
+                                         std::cerr << crash.what() << std::endl;
+                                         crashed_airplanes++;
+                                         return true;
+                                     }
+                                 });
 
     aircraftPool.erase(newEnd, aircraftPool.end());
 }
@@ -54,4 +59,9 @@ unsigned int AircraftManager::get_required_fuel()
         }
     }
     return sum;
+}
+
+unsigned int AircraftManager::get_crashed_numbers()
+{
+    return this->crashed_airplanes;
 }

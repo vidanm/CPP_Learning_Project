@@ -65,6 +65,10 @@ void TowerSimulation::create_keystrokes() const
     GL::keystrokes.emplace('f', []() { GL::toggle_fullscreen(); });
     GL::keystrokes.emplace('p', []() { GL::ticks_per_sec++; });
     GL::keystrokes.emplace('o', []() { GL::ticks_per_sec--; });
+    GL::keystrokes.emplace(
+        'm', [this]()
+        { std::cout << this->aircraftManager->get_crashed_numbers() << " crashed airplanes " << std::endl; });
+
     for (unsigned int i = 0; i < airlines_count; i++)
     {
         GL::keystrokes.emplace(i + '0', [this, i]() { aircraftFactory->aircraft_number_by_airlines(i); });

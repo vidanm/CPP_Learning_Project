@@ -1,6 +1,7 @@
 #include "aircraft.hpp"
 
 #include "GL/opengl_interface.hpp"
+#include "config.hpp"
 #include "waypoint.hpp"
 
 #include <cmath>
@@ -125,7 +126,7 @@ bool Aircraft::move()
             if (!landing_gear_deployed)
             {
                 using namespace std::string_literals;
-                throw AircraftCrash { flight_number + " crashed into the ground"s };
+                throw AircraftCrash { flight_number + " crashed into the ground" };
             }
         }
         else
@@ -141,6 +142,7 @@ bool Aircraft::move()
             if (fuel <= 0)
             {
                 std::cout << this->flight_number << " has nos FUEL" << std::endl;
+                throw AircraftCrash { flight_number + " crashed into the ground" };
             }
 
             if (is_circling())
