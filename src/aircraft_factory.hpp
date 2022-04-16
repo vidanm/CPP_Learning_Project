@@ -10,8 +10,8 @@ class AircraftFactory
 {
 public:
     AircraftFactory() {}
-    Aircraft* create_aircraft(Airport& airport, const AircraftType& type);
-    Aircraft* create_random_aircraft(Airport& airport);
+    std::unique_ptr<Aircraft> create_aircraft(Airport& airport, const AircraftType& type);
+    std::unique_ptr<Aircraft> create_random_aircraft(Airport& airport);
     void aircraft_number_by_airlines(const unsigned int airline) const;
     unsigned int airlines_number();
 

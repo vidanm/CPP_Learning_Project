@@ -4,23 +4,16 @@
 
 #include <memory>
 
-void AircraftManager::add_aircraft(Aircraft* aircraft)
+void AircraftManager::add_aircraft(std::unique_ptr<Aircraft>& aircraft)
 {
-    this->aircraftPool.emplace_back(aircraft);
-}
-
-bool toDelete(Aircraft aircraft)
-{
-    return !aircraft.move();
+    this->aircraftPool.emplace_back(std::move(aircraft));
 }
 
 void AircraftManager::move()
 {
-    std::unordered_set<Aircraft*> aircraftToRemove;
-
     // Sorting aircrafts by priority
     std::sort(aircraftPool.begin(), aircraftPool.end(),
-              [](Aircraft* first, Aircraft* second)
+              [](std::unique_ptr<Aircraft>& first, std::unique_ptr<Aircraft>& second)
               {
                   if (first->has_terminal() && second->has_terminal())
                       return first->remaining_fuel() < second->remaining_fuel();
@@ -33,7 +26,7 @@ void AircraftManager::move()
               });
 
     auto newEnd = std::remove_if(aircraftPool.begin(), aircraftPool.end(),
-                                 [this](Aircraft* aircraft)
+                                 [this](std::unique_ptr<Aircraft>& aircraft)
                                  {
                                      try
                                      {

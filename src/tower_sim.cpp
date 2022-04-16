@@ -58,8 +58,13 @@ void TowerSimulation::create_keystrokes() const
 
     GL::keystrokes.emplace('x', []() { GL::exit_loop(); });
     GL::keystrokes.emplace('q', []() { GL::exit_loop(); });
-    GL::keystrokes.emplace(
-        'c', [this]() { aircraftManager->add_aircraft(aircraftFactory->create_random_aircraft(*airport)); });
+    GL::keystrokes.emplace('c',
+                           [this]()
+                           {
+                               auto aircraft = aircraftFactory->create_random_aircraft(*airport);
+                               auto move_ptr = std::move(aircraft);
+                               aircraftManager->add_aircraft(move_ptr);
+                           });
     GL::keystrokes.emplace('+', []() { GL::change_zoom(0.95f); });
     GL::keystrokes.emplace('-', []() { GL::change_zoom(1.05f); });
     GL::keystrokes.emplace('f', []() { GL::toggle_fullscreen(); });

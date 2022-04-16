@@ -5,7 +5,7 @@
 
 #include <vector>
 
-Aircraft* AircraftFactory::create_aircraft(Airport& airport, const AircraftType& type)
+std::unique_ptr<Aircraft> AircraftFactory::create_aircraft(Airport& airport, const AircraftType& type)
 {
     std::string flight_number = "";
     do
@@ -19,11 +19,10 @@ Aircraft* AircraftFactory::create_aircraft(Airport& airport, const AircraftType&
     const Point3D start     = Point3D { std::sin(angle), std::cos(angle), 0 } * 3 + Point3D { 0, 0, 2 };
     const Point3D direction = (-start).normalize();
 
-    Aircraft* aircraft = new Aircraft { type, flight_number, start, direction, airport.get_tower() };
-    return aircraft;
+    return std::make_unique<Aircraft>(type, flight_number, start, direction, airport.get_tower());
 }
 
-Aircraft* AircraftFactory::create_random_aircraft(Airport& airport)
+std::unique_ptr<Aircraft> AircraftFactory::create_random_aircraft(Airport& airport)
 {
     return create_aircraft(airport, *(aircraft_types[rand() % 3]));
 }
