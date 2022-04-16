@@ -73,7 +73,6 @@ void Tower::arrived_at_terminal(const Aircraft& aircraft)
 
 WaypointQueue Tower::reserve_terminal(Aircraft& aircraft)
 {
-    // assert(&aircraft);
     //  try and reserve a terminal for the craft to land
     const auto vp = airport.reserve_terminal(aircraft);
     if (!vp.first.empty())

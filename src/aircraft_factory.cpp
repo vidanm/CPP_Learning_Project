@@ -7,6 +7,7 @@
 
 std::unique_ptr<Aircraft> AircraftFactory::create_aircraft(Airport& airport, const AircraftType& type)
 {
+
     std::string flight_number = "";
     do
     {

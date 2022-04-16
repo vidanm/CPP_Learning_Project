@@ -188,6 +188,7 @@ bool Aircraft::is_low_on_fuel() const
 
 void Aircraft::refill(unsigned int& fuel_stock)
 {
+    assert(fuel_stock);
     int used_fuel = 0;
     if (3000 - (3000 - this->fuel) > fuel_stock)
     {
