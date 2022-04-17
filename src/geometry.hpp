@@ -214,3 +214,5 @@ inline Point2D project_2D(const Point3D& p)
 {
     return { .5f * p.x() - .5f * p.y(), .5f * p.x() + .5f * p.y() + p.z() };
 }
+
+void test_generic_points();
