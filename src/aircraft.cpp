@@ -103,7 +103,6 @@ bool Aircraft::move()
         {
             add_waypoint<front>(wp);
         }
-        waypoints = control.get_instructions(*this);
     }
 
     if (!is_at_terminal)

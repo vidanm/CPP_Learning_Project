@@ -12,6 +12,13 @@ template <unsigned int dimension, typename type> struct Point
     Point()                            = default;
     std::array<type, dimension> values = {};
 
+    Point(type x, type y) : values { x, y } { static_assert(dimension == 2, "N'est pas de dimension 2"); }
+
+    Point(type x, type y, type z) : values { x, y, z }
+    {
+        static_assert(dimension == 3, "N'est pas de dimension 3");
+    }
+
     Point& operator+=(const Point& other)
     {
         std::transform(values.begin(), values.end(), other.values.begin(), values.begin(),
@@ -206,7 +213,6 @@ struct Point3D
         return *this;
     }
 };
-
 // our 3D-coordinate system will be tied to the airport: the runway is parallel to the x-axis, the z-axis
 // points towards the sky, and y is perpendicular to both thus,
 // {1,0,0} --> {.5,.5}   {0,1,0} --> {-.5,.5}   {0,0,1} --> {0,1}
