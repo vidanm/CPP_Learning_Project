@@ -23,6 +23,8 @@ for (const auto& wp: control.get_instructions(*this))
 2. Modifiez `Aircraft::add_waypoint` afin que l'évaluation du flag ait lieu à la compilation et non à l'exécution.
 Que devez-vous changer dans l'appel de la fonction pour que le programme compile ?
 
+On rajoute le booleen front comme un parametre de template car les templates sont evalues a la compilation.
+
 3. **BONUS** En utilisant [GodBolt](https://godbolt.org/), comparez le code-assembleur généré par les fonctions suivantes:
 <table border="0">
  <tr>

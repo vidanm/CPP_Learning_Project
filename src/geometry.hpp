@@ -7,6 +7,56 @@
 #include <iostream>
 #include <numeric>
 
+template <unsigned int dimension, typename type> struct Point
+{
+    Point()                            = default;
+    std::array<type, dimension> values = {};
+
+    Point& operator+=(const Point& other)
+    {
+        std::transform(values.begin(), values.end(), other.values.begin(), values.begin(),
+                       [](float coord, float other_coord) { return coord + other_coord; });
+        return *this;
+    }
+
+    Point& operator-=(const Point& other)
+    {
+        std::transform(values.begin(), values.end(), other.values.begin(), values.begin(),
+                       [](float coord, float other_coord) { return coord - other_coord; });
+        return *this;
+    }
+
+    Point& operator*=(const float scalar)
+    {
+        std::transform(values.begin(), values.end(), values.begin(),
+                       [scalar](float coord) { return coord * scalar; });
+        return *this;
+    }
+
+    Point operator+(const Point& other) const
+    {
+        Point result = *this;
+        result += other;
+        return result;
+    }
+
+    Point operator-(const Point& other) const
+    {
+        Point result = *this;
+        result -= other;
+        return result;
+    }
+
+    Point operator*(const float scalar) const
+    {
+        Point result = *this;
+        result *= scalar;
+        return result;
+    }
+
+    Point operator-() const { return (*this) * -1; }
+};
+
 struct Point2D
 {
     float values[2] {};
