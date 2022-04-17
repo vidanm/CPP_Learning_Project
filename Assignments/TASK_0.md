@@ -128,10 +128,6 @@ La variable de controle est GL::ticks_per_sec
 
 3) Identifiez quelle variable contrôle le temps de débarquement des avions et doublez-le.
 
-```
-#TODO
-```
-
 4) Lorsqu'un avion a décollé, il réattérit peu de temps après.
 Faites en sorte qu'à la place, il soit retiré du programme.\
 Indices :\
@@ -145,9 +141,6 @@ On pourrais supprimer l'avion dans la fonction get_instructions definie dans tow
 Mais ce n'est pas pertinent car la fonction move() qui appelle get_instructions() est appelle sur un iterateur d'unordered set
 si on supprime un aircraft a cet endroit la il risque d'y avoir un probleme.
 Il faut retirer les avions apres les avoir move()
-TODO : Supprimer apres le move dans la fonction gl
-
-Autre idee : DynamicObject ont un champ waitForDelete en attente de leur suppression
 ```
 
 Que devez-vous modifier pour transmettre l'information de la première à la seconde fonction ?
@@ -158,6 +151,9 @@ Il faut également penser à le supprimer de cette liste avant de le détruire.
 Faites en sorte que l'ajout et la suppression de `display_queue` soit "automatiquement gérée" lorsqu'un `Displayable` est créé ou détruit.
 Pourquoi n'est-il pas spécialement pertinent d'en faire de même pour `DynamicObject` ?
 
+```
+On a deja gere le retrait d'un DynamicObject et les classes qui heritent de l'une heritent aussi de l'autre
+```
 
 6) La tour de contrôle a besoin de stocker pour tout `Aircraft` le `Terminal` qui lui est actuellement attribué, afin de pouvoir le libérer une fois que l'avion décolle.
 Cette information est actuellement enregistrée dans un `std::vector<std::pair<const Aircraft*, size_t>>` (size_t représentant l'indice du terminal).
